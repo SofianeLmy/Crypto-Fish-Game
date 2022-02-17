@@ -1,0 +1,16 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  canvas {
+    background-image:url("images/water-texture.jpg");
+  }
