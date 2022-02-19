@@ -4,8 +4,6 @@ body {
 }
 
 body {
-    margin: 0;
-    background-color: whitesmoke;
     display: flex;
     align-items: center;
     justify-content: center;
