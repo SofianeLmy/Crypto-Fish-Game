@@ -3,11 +3,16 @@ class Game {
     this.canvas = canvasElement;
     this.context = canvasElement.getContext('2d');
     this.player = new Player(this);
-    this.enemy = new Enemy(this,500,300);
 
-    this.enemies = [];
-    this.cryptos = [];
-    this.bubbles = [];
+    this.enemies = [
+
+    ];
+    this.cryptos = [
+
+    ];
+    this.bubbles = [
+
+    ];
     this.score = 0;
     this.enableControls();
   }
@@ -48,6 +53,14 @@ class Game {
     this.enemies.push(enemy);
   }
 
+  generateCrypto(){
+    const cryptoY = Math.random()*this.canvas.height - 20;
+    const cryptoX = Math.random()*this.canvas.width;
+    const crypto = new Crypto (this, cryptoX, cryptoY);
+    this.cryptos.push(crypto);
+  }
+
+
   loop () {
       window.requestAnimationFrame(() => {
           this.runLogic();
@@ -59,24 +72,55 @@ class Game {
   runLogic () {
       if (Math.random() < 0.01) {
         this.generateEnemy();
+        this.generateCrypto();
       }
+      
       for (const enemy of this.enemies) {
         enemy.runLogic();
+
+      const enemyAndPlayerIntersection = enemy.checkIntersection(this.player);
+      if (enemyAndPlayerIntersection) {
+        const indexOfEnemy = this.enemies.indexOf(enemy);
+        this.enemies.splice(indexOfEnemy, 1);
+        this.score -= 10;
+      }
       }
 
       for (const bubble of this.bubbles) {
         bubble.runLogic();
       }
+      
+      for (const crypto of this.cryptos) {
+        crypto.runLogic();
+      
+      const cryptoAndPlayerIntersection = crypto.checkIntersection(this.player);
+      if (cryptoAndPlayerIntersection) {
+        const indexOfCrypto = this.cryptos.indexOf(crypto);
+        this.cryptos.splice(indexOfCrypto, 1);
+        this.score += 10;
+          
+      }
+
+  }
+}
+
+  drawScore () {
+    this.context.font = '38px monospace';
+    this.context.fillText(this.score, 200, 50);
   }
 
   draw() {
-    this.context.clearRect(0,0, 500, 500);
-    this.player.draw();
-    for (const enemy of this.enemies){
-      enemy.draw();
+      this.context.clearRect(0,0, 600, 600);
+      this.player.draw();
+      this.drawScore();
+      for (const enemy of this.enemies){
+        enemy.draw();
+    }
+      for (const bubble of this.bubbles) {
+      bubble.draw();
+    }
+      for (const crypto of this.cryptos) {
+          crypto.draw();
+        }
+    }
   }
-    for (const bubble of this.bubbles) {
-    bubble.draw();
-  }
-  }
-}

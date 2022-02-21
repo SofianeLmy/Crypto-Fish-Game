@@ -9,9 +9,8 @@ class Bubbles {
 }
 
 runLogic() {
-    
+  this.y -= 1;
   }  
-
 
 draw(){
     this.game.context.save();
