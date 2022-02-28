@@ -1,9 +1,15 @@
 class Game {
-  constructor (canvasElement) {
+  constructor (canvasElement, screens) {
     this.canvas = canvasElement;
     this.context = canvasElement.getContext('2d');
-    this.player = new Player(this);
+    this.screens = screens;
+  }
 
+  start(){
+    
+    this.score = 50;
+    this.player = new Player(this);
+    
     this.enemies = [
 
     ];
@@ -13,9 +19,16 @@ class Game {
     this.bubbles = [
 
     ];
-    this.score = 0;
+    
     this.enableControls();
+    this.loop();
   }
+
+  lose (){
+    this.screens.playing.style.display = 'none';
+    this.screens.end.style.display = 'block';
+  }
+
 
   enableControls(){
     window.addEventListener('keydown', (event) => {
@@ -50,6 +63,7 @@ class Game {
     const enemyY = Math.random()*this.canvas.height - 50;
     const enemyX = Math.random()*this.canvas.width;
     const enemy = new Enemy (this, enemyX, enemyY, enemySpeed);
+    //add something to remove enemy (splice) from array when it goes beyond width 
     this.enemies.push(enemy);
   }
 
@@ -57,7 +71,10 @@ class Game {
     const cryptoY = Math.random()*this.canvas.height - 20;
     const cryptoX = Math.random()*this.canvas.width;
     const crypto = new Crypto (this, cryptoX, cryptoY);
+    //check the lenght of the coins with an if
     this.cryptos.push(crypto);
+    
+    //
   }
 
 
@@ -70,6 +87,7 @@ class Game {
   }
 
   runLogic () {
+    
       if (Math.random() < 0.01) {
         this.generateEnemy();
         this.generateCrypto();
@@ -100,8 +118,12 @@ class Game {
         this.score += 10;
           
       }
-
   }
+
+  if (this.score <= 0) {
+    this.lose();
+  }
+
 }
 
   drawScore () {
