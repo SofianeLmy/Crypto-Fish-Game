@@ -1,5 +1,5 @@
 const enemyImage = new Image ();
-enemyImage.src = '/images/shark.jpeg';
+enemyImage.src = '/images/whale.png';
 
 class Enemy {
     constructor (gameInstance, x, y, speed) {

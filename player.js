@@ -1,5 +1,5 @@
 const playerImage = new Image ();
-playerImage.src = '/images/fish.jpg';
+playerImage.src = '/images/orange fish.png';
 
 class Player {
   constructor (gameInstance) {
@@ -16,6 +16,7 @@ class Player {
     //this.game.context.fillStyle = 'yellow';
     //this.game.context.fillRect(this.x, this.y, this.height, 50);
     this.game.context.drawImage(playerImage,this.x, this.y, this.width, this.height);
+
     this.game.context.restore();
   }
 

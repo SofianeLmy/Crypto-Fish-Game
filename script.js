@@ -16,13 +16,11 @@ const screenElements = {
 const game = new Game(canvasElement, screenElements);
 
 startButton.addEventListener('click', () => {
-    startScreenElement.style.display = 'none';
-    playScreenElement.style.display = 'block';
+    game.displayScreen('playing');
     game.start();
 });
 
 tryAgainButton.addEventListener('click', () => {
-    endScreenElement.style.display = 'none';
-    playScreenElement.style.display = 'block';
+    game.displayScreen('playing');
     game.start();
 });
