@@ -1,10 +1,13 @@
+const cryptoImage = new Image ();
+cryptoImage.src = '/images/btcremove.png';
+
 class Crypto {
     constructor (gameInstance, x, y) {
       this.game = gameInstance;
       this.x = x;
       this.y = y;
-      this.width = 20;
-      this.height = 5;
+      this.width = 150;
+      this.height = 75;
     }
 
   checkIntersection (player) {
@@ -22,9 +25,11 @@ class Crypto {
 
   draw() {
     this.game.context.save();
-    this.game.context.fillStyle = 'purple';
-    this.game.context.fillRect(this.x, this.y, this.width, this.height);
+    this.game.context.drawImage(cryptoImage, this.x, this.y, this.width, this.height);
+    
     this.game.context.restore();
+
+    
 }
 
 }

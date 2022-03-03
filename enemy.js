@@ -1,5 +1,5 @@
 const enemyImage = new Image ();
-enemyImage.src = '/images/whale.png';
+enemyImage.src = '/images/whaleremove.png';
 
 class Enemy {
     constructor (gameInstance, x, y, speed) {
@@ -7,8 +7,8 @@ class Enemy {
       this.x = x;
       this.y = y;
       this.speed = speed;
-      this.width = 50;
-      this.height = 50;
+      this.width = 75;
+      this.height = 75;
     }
   
 
@@ -24,7 +24,6 @@ class Enemy {
   draw(){
     this.game.context.save();
     this.game.context.fillStyle = 'red';
-    //this.game.context.fillRect(enemyImage, this.x, this.y, this.width, this.height);
     this.game.context.drawImage(enemyImage,this.x, this.y, this.width, this.height);
     this.game.context.restore();
   }
