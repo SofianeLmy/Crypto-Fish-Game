@@ -26,10 +26,7 @@ class Crypto {
   draw() {
     this.game.context.save();
     this.game.context.drawImage(cryptoImage, this.x, this.y, this.width, this.height);
-    
-    this.game.context.restore();
-
-    
+    this.game.context.restore();    
 }
 
 }

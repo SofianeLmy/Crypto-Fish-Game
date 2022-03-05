@@ -69,7 +69,7 @@ class Game {
 
   generateEnemy() {
     const enemySpeed = Math.random() + 0.1;
-    const enemyY = Math.random() * this.canvas.height - 50;
+    const enemyY = (Math.random()*(this.canvas.height-100+1)+100);
     const enemyX = Math.random() * this.canvas.width;
     const enemy = new Enemy(this, enemyX, enemyY, enemySpeed);
 
@@ -82,7 +82,7 @@ class Game {
   }
 
   generateCrypto() {
-    const cryptoY = Math.random() * this.canvas.height - 20;
+    const cryptoY = (Math.random()*(this.canvas.height-100+1)+100);
     const cryptoX = Math.random() * this.canvas.width;
     const crypto = new Crypto(this, cryptoX, cryptoY);
     this.cryptos.push(crypto);
@@ -141,7 +141,7 @@ class Game {
 
   drawScore() {
     this.context.font = '38px monospace';
-    this.context.fillText(this.score, 200, 50);
+    this.context.fillText(this.score, 300, 50);
   }
 
   draw() {
