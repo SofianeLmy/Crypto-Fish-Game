@@ -24,6 +24,12 @@ body {
   text-align: center;
 }
 
+h1, h3 {
+  color: black;
+  font-family: 'Red Hat Display', sans-serif;
+
+}
+
 .button-32 {
   background-color: #fff000;
   border-radius: 12px;
